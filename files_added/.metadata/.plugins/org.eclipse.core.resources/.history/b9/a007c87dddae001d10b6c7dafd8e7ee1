@@ -1,0 +1,178 @@
+package org.jfree.data.test;
+import static org.junit.Assert.*; import org.jfree.data.Range; import org.junit.*;
+public class RangeTest {
+private Range exampleRange1, exampleRange2, exampleRange3, exampleRange4, exampleRange5;
+@BeforeClass public static void setUpBeforeClass() throws Exception {
+}
+@Before
+public void setUp() throws Exception {
+	exampleRange1 = new Range(5, 10);
+	exampleRange2 = new Range(-2, 3);
+	exampleRange3 = null;
+	exampleRange4 = new Range(1,7);
+	exampleRange5 = new Range(6,9);
+	//exampleRange6 = new Range (3,8);
+}
+/*
+* Tests for method toString
+* 1 test
+*/
+@Test
+public void testToString() {
+String expected = "Range[5,10]";
+String result = exampleRange1.toString();
+assertEquals(expected, result);
+}
+/*
+* Tests for method Combine
+* 10 tests
+*/
+@Test
+public void testCombineWithRange1InsideRange2() {
+	assertEquals("The new range should be (5, 10)", exampleRange1, Range.combine(exampleRange5, exampleRange1));
+}
+/* Test combines Range 1 = (5,10)
+* 				 Range 2 = (6,9)
+* Test produces an error:
+* IllegalArgumentException: Range(double,double): require lower (6.0) <= upper (5.0)
+*/
+@Test
+public void testCombineWithRange2InsideRange1() {
+	assertEquals("The new range should be (5, 10)", exampleRange1, Range.combine(exampleRange1, exampleRange5));
+}
+/* Test combines Range 1 = (1,7)
+* 				 Range 2 = (5,10)
+* Test produces an error:
+* IllegalArgumentException: Range(double,double): require lower (5.0) <= upper (1.0)
+*/
+@Test
+public void testCombineWithLowRange1IntersectHighRange2() {
+	Range result = new Range(1,10);
+	assertEquals("The new range should be (1, 10)", result, Range.combine(exampleRange4, exampleRange1));
+}
+@Test
+public void testCombineWithHighRange1IntersectWithLowRange2() {
+	Range result = new Range(1,10);
+	assertEquals("The new range should be (1, 10)", result, Range.combine(exampleRange1, exampleRange4));
+}
+@Test
+public void testCombineRange1EqualsRange2() {
+	assertEquals("The new range should be (1, 7)", exampleRange4, Range.combine(exampleRange4, exampleRange4));
+}
+/* Test combines Range 1 = (-2,3)
+* 				 Range 2 = (5,10)
+* Test produces an error:
+* IllegalArgumentException: Range(double,double): require lower (5.0) <= upper (-2.0)
+*/
+@Test
+public void testCombineLowRange1HighRange2() {
+	Range result = new Range(-2,10);
+	assertEquals("The new range should be (-2, 10)", result, Range.combine(exampleRange2, exampleRange1));
+}
+@Test
+public void testCombineHighRange1LowRange2() {
+	Range result = new Range(-2,10);
+	assertEquals("The new range should be (-2, 10)", result, Range.combine(exampleRange1, exampleRange2));
+}
+@Test
+public void testCombineWithNullRange1() {
+	assertEquals("The new range should be (-2, 3)", exampleRange2, Range.combine(exampleRange3, exampleRange2));
+}
+@Test
+public void testCombineWithNullRange2() {
+	assertEquals("The new range should be (5, 10)", exampleRange1, Range.combine(exampleRange1, exampleRange3));
+}
+@Test
+public void testCombineWithBothNullRanges() {
+	assertEquals("The new range should be null", null, Range.combine(exampleRange3, exampleRange3));
+}
+/*
+* Tests for method Equals
+* 3 tests
+*/
+@Test
+public void testEqualsWithEquivalentObject() {
+	Range tempRange = new Range(5,10);
+	assertTrue(exampleRange1.equals(tempRange));
+}
+@Test
+public void testEqualsWithNonEquivalentObject() {
+	assertFalse(exampleRange2.equals(exampleRange1));
+}
+@Test
+public void testEqualsWithNullObject() {
+	assertFalse(exampleRange1.equals(exampleRange3));	
+}
+@Test
+public void testIntersects_Overlap_LowerBound_UpperBound() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(3, 8);
+
+    assertTrue(range1.intersects(3,8));
+}
+
+@Test
+public void testIntersects_Overlap_LowerBound() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(3, 8);
+    System.out.println(range1.intersects(3, 5));
+    assertTrue(range1.intersects(3, 5));
+}
+
+@Test
+public void testIntersects_Overlap_UpperBound() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(3, 8);
+    
+    
+    assertTrue(range1.intersects(0, 3));
+}
+
+@Test
+public void testIntersects_CompleteOverlap() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(3, 8);
+
+    System.out.println(range1.intersects(0, 5));
+    assertTrue(range1.intersects(0, 5));
+}
+
+@Test
+public void testIntersects_NoOverlap_GreaterThan() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(6, 10);
+
+    assertFalse(range1.intersects(6, 10));
+}
+
+@Test
+public void testIntersects_NoOverlap_LessThan() {
+    Range range1 = new Range(0, 5);
+    //Range range2 = new Range(-2, -1);
+
+    assertFalse(range1.intersects(-2, -1));
+}
+
+@Test
+public void testIntersects_IdenticalRanges() {
+    Range range5 = new Range(5, 5);
+
+    assertTrue(range5.intersects(5, 5));
+}
+
+@Test
+public void testGetUpperBound() {
+    Range range = new Range(0, 5);
+    //System.out.println(range.getUpperBound());
+    assertEquals(5.0, range.getUpperBound(), 0);
+}
+
+
+@After
+public void tearDown() throws Exception {
+}
+@AfterClass
+public static void tearDownAfterClass() throws Exception {
+}
+}
+
