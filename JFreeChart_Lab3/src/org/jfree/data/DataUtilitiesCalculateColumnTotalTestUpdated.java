@@ -31,7 +31,7 @@ public class DataUtilitiesCalculateColumnTotalTestUpdated {
 		// exercise
 		double result = DataUtilities.calculateColumnTotal(values, 0);
 		// verify
-		assertEquals(result, 10.0, .000000001d);
+		assertEquals(10.0, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
 
@@ -208,7 +208,7 @@ public class DataUtilitiesCalculateColumnTotalTestUpdated {
 		// exercise
 		double result = DataUtilities.calculateColumnTotal(values, 0, validRows);
 		// verify
-		assertEquals(result, 7.6, .000000001d);
+		assertEquals(7.6, result, .000000001d);
   }
 
   @Test
