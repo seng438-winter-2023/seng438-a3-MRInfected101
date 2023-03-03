@@ -52,4 +52,6 @@ Text…
 
 # 10 Comments/feedback on the lab itself
 
-Text…
+Instructions in section 3.3 could be updated to explicitly state that we need to write tests to cover ALL methods in class Range not just the 5 methods used in assignment 2.
+Several images in the lab instruction document could not be viewed and made troubleshooting difficult as there was nothing to visually refrence.
+
