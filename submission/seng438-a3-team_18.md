@@ -18,7 +18,7 @@ This lab we used several tools, including manual calculations, to calculate the 
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
-See images SENG438_Lab3_DataUtilCFG and SENG438_Lab3_RangeCFG in folder "images" to view the data-flow coverage for methods DataUtilitise.CalculateColumnTotal and Range.Equal respectively.
+See images SENG438_Lab3_DataUtilCFG and SENG438_Lab3_RangeCFG in folder "submission/images/diagrams" to view the data-flow coverage for methods DataUtilitise.CalculateColumnTotal and Range.Equal respectively.
 
 # 3 A detailed description of the testing strategy for the new unit test
 
@@ -40,7 +40,12 @@ Text… momin
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
-Text… es
+After trying several coverage tools, we couldn’t find one/make a tool work that could show us the condition coverage. Therefor, we opted to show the coverage for Statement / line coverage, branch coverage and method coverage. The screenshots displaying the coverage reached for each of these metrics can be found in "submission/images/coverageResults" folder.
+
+The methods getUpperBound, getLowerBound, and getLength in the class Range could not achieve a statement coverage of 90% because of infeasible paths in the method implementation. There is a condition in all three methods which checks if “lower > upper” which can never be true due to that condition already appearing in the constructor. When that condition is met in the constructor, an illegal argument exception is thrown, preventing any instance of Range from being created satisfying that condition. Because of that, getUpperBound, getLowerBound, and getLength can never get to 100% statement coverage.
+
+There is another infeasible path in DataUtilities in the method calculateColumnTotal. This infeasible path did not prevent us from achieving the needed coverage percentages however it does contain statements of unreachable code. A variable is defined to be 0 and then is immediately checked if it is greater than 0. The code within that if statement is impossible to reach without some bit corruption occurring.
+
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
