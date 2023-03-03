@@ -14,11 +14,11 @@ for each group. Please see each lab document for details.)
 
 # 1 Introduction
 
-Text…
+This lab we used several tools, including manual calculations, to calculate the coverage of methods in DataUtilities class and Range class. First the coverage was calculated using only tests written in assignment 2 using black box methods, then, using white box testing, more tests were developed to improve coverage for all coverage types. 
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
-Text…
+See images SENG438_Lab3_DataUtilCFG and SENG438_Lab3_RangeCFG in folder "images" to view the data-flow coverage for methods DataUtilitise.CalculateColumnTotal and Range.Equal respectively. 
 
 # 3 A detailed description of the testing strategy for the new unit test
 
@@ -42,7 +42,9 @@ Text…
 
 # 8 A discussion on how the team work/effort was divided and managed
 
-Text…
+One group member created CFG for methods calculateColumnTotal from DataUtilitise and equal from Range class. Using the diagrams to do manual calculations as specified in section 3.2.
+2 group members worked on created additional tests for all methods to improve coverage.
+Another group member focused on testing varyious coverage tools to find the coverage metrics from using tests only from assignment two and and then the new metrics after aditional test creations.
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
